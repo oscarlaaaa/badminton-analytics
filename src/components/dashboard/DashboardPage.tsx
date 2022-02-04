@@ -1,9 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
+import { useParams } from "react-router-dom";
 
-const DashboardPage = () => {
-  return <div>
-      <h1>This is the dashboard page</h1>
-  </div>;
+const DashboardPage: React.FC = (): React.ReactElement => {
+  let { playerId } = useParams();
+  return (
+    <div>
+      <h1>This is the dashboard page. The current player is {playerId} </h1>
+    </div>
+  );
 };
 
 export default DashboardPage;

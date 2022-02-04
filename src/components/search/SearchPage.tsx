@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 
-const SearchPage = () => {
+const SearchPage: React.FC = (): React.ReactElement => {
   let { name } = useParams();
   return (
     <div>

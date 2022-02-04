@@ -5,7 +5,7 @@ import LandingPage from "./components/landing/LandingPage";
 import SearchPage from "./components/search/SearchPage";
 import DashboardPage from "./components/dashboard/DashboardPage";
 
-export default function App() {
+const App: React.FC = (): React.ReactElement => {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,3 +16,5 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+export default App;
