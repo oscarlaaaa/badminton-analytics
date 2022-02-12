@@ -3,7 +3,6 @@ import SearchBar from "./SearchBarComponent";
 
 type SearchType = {
   text: string;
-  setText: (text: string) => void;
   onTextChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
