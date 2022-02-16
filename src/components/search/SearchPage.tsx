@@ -1,26 +1,28 @@
 import * as React from "react";
-import * as Utils from "../../utils/SearchUtils";
+import * as SearchUtils from "../../utils/SearchUtils";
+import { Player } from "../../types/DataTypes";
 import SearchBarContainer from "./SearchBarContainer";
 import SearchResultsContainer from "./SearchResultsContainer";
 
 const SearchPage: React.FC = (): React.ReactElement => {
   const [text, setText] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [suggestions, setSuggestions] = React.useState<any>(null);
-  const [noSuggestions, setNoSuggestions] = React.useState<boolean>(false);
+  const [suggestions, setSuggestions] = React.useState<Player[]>(null);
+  const [noSuggestions, setNoSuggestions] = React.useState<string>(null);
   const [loadingError, setLoadingError] = React.useState<boolean>(false);
 
   const onTextChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setText(event.target.value);
   };
 
-  const onSearch = () => {
+  const onSearch = (): void => {
     setIsLoading(true);
-    Utils.fetchSuggestions(text).then(
+    SearchUtils.fetchSuggestions(text).then(
       (suggest) => {
         setSuggestions(suggest ?? null);
-        setNoSuggestions(suggest === undefined)
+        setNoSuggestions(suggest === undefined ? text : null);
         setIsLoading(false);
+        setLoadingError(false);
       },
       (error) => {
         setIsLoading(false);
@@ -59,9 +61,9 @@ const SearchPage: React.FC = (): React.ReactElement => {
         Check!
       </button>
       {suggestions && (
-        <SearchResultsContainer props={{ suggestions: suggestions }} />
+        <SearchResultsContainer suggestions={suggestions} />
       )}
-      {noSuggestions && <p>No players with '{text}' in their name could be found. Please search again.</p>}
+      {noSuggestions && <p>No players with '{noSuggestions}' in their name could be found. Please check your spelling and try again.</p>}
       {loadingError && <p>Sorry, there was an error. Please try again.</p>}
     </div>
   );

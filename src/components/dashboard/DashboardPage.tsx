@@ -1,23 +1,24 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
-import * as Utils from "../../utils/SearchUtils";
+import * as SearchUtils from "../../utils/SearchUtils";
 import PlayerGeneralInfo from "./PlayerGeneralInfo";
-
+import { Player } from "../../types/DataTypes";
 
 const DashboardPage: React.FC = (): React.ReactElement => {
-  const { uid } = useParams();
-  const [player, setPlayer] = React.useState(null);
+  const { uid } = useParams<string>();
+  const [player, setPlayer] = React.useState<Player | null>(null);
 
   React.useEffect(() => {
-    Utils.fetchPlayer(uid)
-    .then((result) => {
+    SearchUtils.fetchPlayer(uid)
+    .then((result: Player) => {
         setPlayer(result);
     })
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
       <h1>This is the dashboard page. The current player is {uid} </h1>
-      {player ? <PlayerGeneralInfo props={player} /> : <p>No player was found.</p>}
+      {player ? <PlayerGeneralInfo player={player} /> : <p>No player was found.</p>}
     </div>
   );
 };

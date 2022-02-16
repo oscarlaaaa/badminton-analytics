@@ -1,9 +1,11 @@
+import { Player } from '../types/DataTypes';
+
 const SEARCH_LIMIT = 25;
 
-export const fetchSuggestions = async (text: string): Promise<any> => {
+export const fetchSuggestions = async (text: string): Promise<Player[]> => {
   text.replace(" ", "%20");
   return fetch(
-    "https://badminton-api.com/player/search?name=" + text + "&limit=" + SEARCH_LIMIT
+      `"https://badminton-api.com/player/search?name=${text}&limit=${SEARCH_LIMIT}`
   )
     .then(
       (res) => {
@@ -26,9 +28,9 @@ export const fetchSuggestions = async (text: string): Promise<any> => {
     );
 };
 
-export const fetchPlayer = async (uid: string): Promise<any> => {
+export const fetchPlayer = async (uid: string): Promise<Player> => {
     return fetch(
-      "https://badminton-api.com/player?player_id=" + uid
+      `https://badminton-api.com/player?player_id=${uid}`
     )
       .then(
         (res) => {

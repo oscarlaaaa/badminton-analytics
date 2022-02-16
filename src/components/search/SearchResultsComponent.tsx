@@ -1,16 +1,12 @@
 import * as React from "react";
 import { Player } from "../../types/DataTypes";
-import PlayerSuggestion from "./PlayerSuggestion";
-
-type ResultType = {
-  suggestions: string[];
-};
+import SearchResultSuggestion from "./SearchResultSuggestion";
 
 interface ResultProps {
-  props: ResultType;
+  suggestions: Player[];
 }
 
-const displayResults = (suggestions: any[]) => {
+const displayResults = (suggestions: Player[]) => {
   return (
     <table>
       <tr>
@@ -19,17 +15,17 @@ const displayResults = (suggestions: any[]) => {
       </tr>
       {suggestions.map((player: Player) => {
         return (
-          <PlayerSuggestion props={player} />
+          <SearchResultSuggestion player={player} />
         );
       })}
     </table>
   );
 };
 
-const SearchResultsComponent: React.FC<ResultProps> = ({ props }) => {
+const SearchResultsComponent: React.FC<ResultProps> = ({ suggestions }) => {
   React.useEffect(() => {
-  }, [props.suggestions]);
-  return displayResults(props.suggestions);
+  }, [suggestions]);
+  return displayResults(suggestions);
 };
 
 export default SearchResultsComponent;

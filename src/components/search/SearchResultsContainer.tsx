@@ -1,19 +1,16 @@
 import * as React from "react";
 import SearchResultsComponent from "./SearchResultsComponent";
-
-type ResultType = {
-  suggestions: any[];
-};
+import { Player } from "../../types/DataTypes";
 
 interface ResultProps {
-  props: ResultType;
+  suggestions: Player[];
 }
 
-const SearchResultsContainer: React.FC<ResultProps> = ({ props }) => {
+const SearchResultsContainer: React.FC<ResultProps> = ({ suggestions }) => {
   return (
     <div>
-      {props.suggestions ? (
-        <SearchResultsComponent props={props} />
+      {suggestions ? (
+        <SearchResultsComponent suggestions={suggestions} />
       ) : (
         <h1>No results found.</h1>
       )}
