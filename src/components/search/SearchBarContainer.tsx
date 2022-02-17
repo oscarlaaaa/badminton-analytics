@@ -15,7 +15,6 @@ const SearchBarContainer: React.FC<SearchProps> = ({ props }): React.ReactElemen
     console.log(props.text);
   }, [props.text]);
 
-  
   return (
     <SearchBar
       props={{

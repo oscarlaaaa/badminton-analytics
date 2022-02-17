@@ -6,26 +6,22 @@ interface ResultProps {
   suggestions: Player[];
 }
 
-const displayResults = (suggestions: Player[]) => {
+const SearchResultsComponent: React.FC<ResultProps> = ({ suggestions }) => {
   return (
     <table>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-      </tr>
-      {suggestions.map((player: Player) => {
-        return (
-          <SearchResultSuggestion player={player} />
-        );
-      })}
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {suggestions.map((player: Player) => {
+          return <SearchResultSuggestion player={player} />;
+        })}
+      </tbody>
     </table>
   );
-};
-
-const SearchResultsComponent: React.FC<ResultProps> = ({ suggestions }) => {
-  React.useEffect(() => {
-  }, [suggestions]);
-  return displayResults(suggestions);
 };
 
 export default SearchResultsComponent;
