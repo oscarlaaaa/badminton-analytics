@@ -15,13 +15,10 @@ const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
     MatchUtils.fetchMatches(player.id)
     .then((results: Match[]) => {
       setMatches(results);
-    },
-    (error) => {
-
     })
   }, []);
 
-  return <MatchHistoryComponent matches={matches} />;
+  return <MatchHistoryComponent player={player} matches={matches} />;
 };
 
 export default MatchHistoryContainer;
