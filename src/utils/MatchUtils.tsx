@@ -1,4 +1,4 @@
-import { Match, Set } from "../types/DataTypes";
+import { Match, Set, Tournament } from "../types/DataTypes";
 
 export const fetchMatches = async (uid: string): Promise<Match[]> => {
   return fetch(
@@ -50,3 +50,44 @@ export const fetchSets = async (playerid: string, opponentid: string, tournament
       }
     );
 };
+
+export const fetchTournament = async (uid: string): Promise<Tournament> => {
+  return fetch(
+    `https://badminton-api.com/tournament?tournament_id=${uid}`
+  )
+    .then(
+      (res) => {
+        return res.json();
+      },
+      (err) => {
+        console.log(err);
+        return Promise.reject(err);
+      }
+    )
+    .then(
+      (result) => {
+        console.log(result);
+        return Promise.resolve(result.data);
+      },
+      (error) => {
+        console.log(error);
+        return Promise.reject(error);
+      }
+    );
+};
+
+export const composeScores = (sets: Set[]): string[] => {
+  const points: string[] = [];
+  for(let set of sets) {
+    points.push(`${set.winnerScore} - ${set.loserScore}`);
+  }
+  return points;
+}
+
+export const composeDurations = (sets: Set[]): number => {
+  let duration: number = 0;
+  for(let set of sets) {
+    duration += set.duration;
+  }
+  return duration;
+}
