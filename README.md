@@ -14,7 +14,7 @@ Right now, the projects is barebones so simply clone the repository, install dep
 
 ## Progress Roadmap
 - [x] Initialize project!
-- [ ] Build out the basic pages (landing, search, player display, head-to-head comparison)
+- [ ] Build out the basic pages (search, player display, head-to-head comparison)
 - [ ] Incorporate Redux for state management (doesn't solve any immediate issues, but good practice!)
 - [ ] Stylize components
 - [ ] Initialize analytic lambda to person model regression and fitting
