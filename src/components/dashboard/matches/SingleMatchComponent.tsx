@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Player, Set, Tournament } from "../../../types/DataTypes";
 import * as MatchUtils from "../../../utils/MatchUtils";
+import * as SearchUtils from "../../../utils/SearchUtils";
 
 interface SingleMatchProps {
   player: Player;
@@ -25,12 +26,13 @@ const SingleMatchComponent: React.FC<SingleMatchProps> = ({ player, matchSets })
     .then((tournament: Tournament) => {
       setTournamentName(tournament.name);
     })
+    console.log(matchSets)
   }, []);
 
   return <tr>
-    <td>{matchSets[0].winnerId === player.id ? player.name : ""}</td>
+    <td>{matchSets[0].winnerId === player.id ? player.name : matchSets[0].winnerId}</td>
     {matchPointField(points)}
-    <td>{matchSets[0].loserId === player.id ? player.name : ""}</td>
+    <td>{matchSets[0].loserId === player.id ? player.name : matchSets[0].loserId}</td>
     <td>{tournamentName}</td>
     <td>{duration}</td>
   </tr>;
