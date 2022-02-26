@@ -31,3 +31,9 @@ export interface Tournament {
   endDate: string;
   id: string;
 }
+
+export interface TopPlayer {
+  winnerId: string;
+  name: string;
+  wins: number;
+}
