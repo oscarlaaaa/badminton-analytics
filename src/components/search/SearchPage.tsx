@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as SearchUtils from "../../utils/SearchUtils";
 import { Player } from "../../types/DataTypes";
-import SearchBarContainer from "./SearchBarContainer";
-import SearchResultsContainer from "./SearchResultsContainer";
+import SearchBarContainer from "./search_bar/SearchBarContainer";
+import SearchResultsContainer from "./search_results/SearchResultsContainer";
+import TopPlayersContainer from './top_players/TopPlayersContainer';
 
 const SearchPage: React.FC = (): React.ReactElement => {
   const [text, setText] = React.useState<string>("");
@@ -32,34 +33,20 @@ const SearchPage: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div>
+    <div style={{"textAlign": "center"}}>
       <h1>Badminton Analytics Dashboard</h1>
-      {isLoading && <h1 style={{ fontSize: "50pt" }}>LOADING</h1>}
+      <p style={{"fontSize": "14pt"}}>Built using TypeScript, React, Redux (soon), AWS Lambda (soon), Heroku, and the <a href="https://api.badminton-api.com">Badminton Singles API</a></p>
+      <div style={{"display": "flex", "alignContent":"space-evenly"}}>
+        <TopPlayersContainer event={"MS"} count={10} />
+        <TopPlayersContainer event={"WS"} count={10} />
+      </div>
       <SearchBarContainer
-        props={{
-          text: text,
-          onTextChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-            onTextChange(event),
-        }}
+          text={text}
+          onTextChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            onTextChange(event)}
+          onSearch={() => onSearch()}
       />
-      <button
-        name="button"
-        onClick={(e) => {
-          e.preventDefault();
-          onSearch();
-        }}
-      >
-        Click me!
-      </button>
-      <button
-        name="button"
-        onClick={(e) => {
-          e.preventDefault();
-          console.log(suggestions);
-        }}
-      >
-        Check!
-      </button>
+      {isLoading && <h1 style={{ fontSize: "50pt" }}>LOADING</h1>}
       {suggestions && (
         <SearchResultsContainer suggestions={suggestions} />
       )}
