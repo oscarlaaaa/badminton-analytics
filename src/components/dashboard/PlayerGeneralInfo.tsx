@@ -8,13 +8,13 @@ interface PlayerSuggestionProps {
 const PlayerGeneralInfo: React.FC<PlayerSuggestionProps> = ({ player }) => {
   return (
       <ul>
-        <li><b>ID:</b> {player.id ?? "None"}</li>
-        <li><b>Name: </b>{player.name ?? "None"}</li>
-        <li><b>Country: </b>{player.country ?? "None"}</li>
-        <li><b>Event: </b>{player.event ?? "None"}</li>
-        <li><b>BirthDate: </b>{player.birthDate ?? "None"}</li>
-        <li><b>Playing Hand: </b>{player.playHand ?? "None"}</li>
-        <li><b>Height: </b>{player.height + "cm" ?? "None"} </li>
+        <li><b>ID:</b> {player.id ?? "N/A"}</li>
+        <li><b>Name: </b>{player.name ?? "N/A"}</li>
+        <li><b>Country: </b>{player.country ?? "N/A"}</li>
+        <li><b>Event: </b>{player.event ?? "N/A"}</li>
+        <li><b>BirthDate: </b>{player.birthDate ?? "N/A"}</li>
+        <li><b>Playing Hand: </b>{player.playHand ?? "N/A"}</li>
+        <li><b>Height: </b>{player.height ? player.height + "cm" : "N/A"} </li>
       </ul>
   );
 };
