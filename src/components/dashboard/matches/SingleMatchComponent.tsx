@@ -1,40 +1,29 @@
 import * as React from "react";
-import { Player, Set, Tournament } from "../../../types/DataTypes";
-import * as MatchUtils from "../../../utils/MatchUtils";
-import * as SearchUtils from "../../../utils/SearchUtils";
+import { Player } from "../../../types/DataTypes";
 
 interface SingleMatchProps {
   player: Player;
-  matchSets: Set[];
+  winnerName: string;
+  loserName: string;
+  points: string[];
+  tournamentName: string;
+  duration: number;
 }
 
 const matchPointField = (points: string[]) => {
   return <td>
     {points.map((point) => {
-      return <p>{point}</p>
+      return <p style={{"margin":"0"}}>{point}</p>
   })}</td>;
 };
 
-const SingleMatchComponent: React.FC<SingleMatchProps> = ({ player, matchSets }) => {
-  
-  const points: string[] = MatchUtils.composeScores(matchSets);
-  const duration: number = MatchUtils.composeDurations(matchSets);
-  const [tournamentName, setTournamentName] = React.useState<string>("N/A");
-
-  React.useEffect(() => {
-    MatchUtils.fetchTournament(matchSets[0].tournamentId)
-    .then((tournament: Tournament) => {
-      setTournamentName(tournament.name);
-    })
-    console.log(matchSets)
-  }, []);
-
+const SingleMatchComponent: React.FC<SingleMatchProps> = (props) => {
   return <tr>
-    <td>{matchSets[0].winnerId === player.id ? player.name : matchSets[0].winnerId}</td>
-    {matchPointField(points)}
-    <td>{matchSets[0].loserId === player.id ? player.name : matchSets[0].loserId}</td>
-    <td>{tournamentName}</td>
-    <td>{duration}</td>
+    <td>{props.winnerName === props.player.name ? (<b>{props.winnerName}</b>) : props.winnerName}</td>
+    {matchPointField(props.points)}
+    <td>{props.loserName === props.player.name ? (<b>{props.loserName}</b>) : props.loserName}</td>
+    <td>{props.tournamentName}</td>
+    <td>{props.duration}</td>
   </tr>;
 };
 
