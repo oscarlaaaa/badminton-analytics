@@ -1,0 +1,13 @@
+#match-history-table {
+  border-collapse: collapse;
+  border: 3px solid black;
+}
+
+#match-history-table tr th {
+  border: 3px solid black;
+  font-size: 14pt;
+}
+
+#match-history-table tr:nth-child(even) {
+  background-color: lightcoral;
+}
