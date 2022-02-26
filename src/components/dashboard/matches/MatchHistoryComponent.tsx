@@ -5,11 +5,13 @@ import SingleMatchContainer from "./SingleMatchContainer";
 interface MatchHistoryProps {
   player: Player;
   matches: Match[];
+  playerCache: object;
+  tourneyCache: object;
 }
 
-const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({ player, matches }) => {
+const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({ player, matches, playerCache, tourneyCache }) => {
   return matches ? (
-    <table>
+    <table id="match-history-table">
       <tr>
         <th>Winner</th>
         <th>Score</th>
@@ -18,7 +20,7 @@ const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({ player, matches })
         <th>Duration</th>
       </tr>
       {matches.map((match: Match) => {
-        return <SingleMatchContainer player={player} match={match} />;
+        return <SingleMatchContainer player={player} match={match} playerCache={playerCache} tourneyCache={tourneyCache} />;
       })}
     </table>
   ) : (

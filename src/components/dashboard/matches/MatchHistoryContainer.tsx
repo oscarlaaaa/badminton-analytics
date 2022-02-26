@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as MatchUtils from "../../../utils/MatchUtils";
-import MatchHistoryComponent from './MatchHistoryComponent';
+import MatchHistoryComponent from "./MatchHistoryComponent";
 import { Player, Match } from "../../../types/DataTypes";
-
+import "../../../styles/MatchHistory.css";
 
 interface MatchHistoryProps {
   player: Player;
@@ -10,15 +10,26 @@ interface MatchHistoryProps {
 
 const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
   const [matches, setMatches] = React.useState<Match[] | null>(null);
-  
+  let player_cache = {};
+  let tournament_cache = {};
+
   React.useEffect(() => {
-    MatchUtils.fetchMatches(player.id)
-    .then((results: Match[]) => {
+    MatchUtils.fetchMatches(player.id).then((results: Match[]) => {
       setMatches(results);
-    })
+    });
   }, []);
 
-  return <MatchHistoryComponent player={player} matches={matches} />;
+  return (
+    <div>
+      <h2>Match History</h2>
+      <MatchHistoryComponent
+        player={player}
+        matches={matches}
+        playerCache={player_cache}
+        tourneyCache={tournament_cache}
+      />
+    </div>
+  );
 };
 
 export default MatchHistoryContainer;
