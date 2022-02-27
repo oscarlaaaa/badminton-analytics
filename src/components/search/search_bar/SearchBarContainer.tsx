@@ -13,23 +13,14 @@ const SearchBarContainer: React.FC<SearchProps> = (props): React.ReactElement =>
   }, [props.text]);
 
   return (
-    <div style={{ margin: "5%" }}>
       <SearchBarComponent
         text={props.text}
         onTextChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           props.onTextChange(e)
         }
+        onSearch={() => props.onSearch()}
       />
-      <button
-        name="button"
-        onClick={(e) => {
-          e.preventDefault();
-          props.onSearch();
-        }}
-      >
-        Search
-      </button>
-    </div>
+      
   );
 };
 
