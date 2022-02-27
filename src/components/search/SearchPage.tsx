@@ -3,7 +3,9 @@ import * as SearchUtils from "../../utils/SearchUtils";
 import { Player } from "../../types/DataTypes";
 import SearchBarContainer from "./search_bar/SearchBarContainer";
 import SearchResultsContainer from "./search_results/SearchResultsContainer";
-import TopPlayersContainer from './top_players/TopPlayersContainer';
+import TopPlayersContainer from "./top_players/TopPlayersContainer";
+
+import { Skeleton, Paper } from "@mantine/core";
 
 const SearchPage: React.FC = (): React.ReactElement => {
   const [text, setText] = React.useState<string>("");
@@ -33,24 +35,50 @@ const SearchPage: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div style={{"textAlign": "center"}}>
+    <div
+      style={{
+        textAlign: "center",
+        width: "90vw",
+        height: "90vh",
+        margin: "4vh 4vw 4vh 4vw",
+      }}
+    >
       <h1>Badminton Analytics Dashboard</h1>
-      <p style={{"fontSize": "14pt"}}>Built using TypeScript, React, Redux (soon), AWS Lambda (soon), Heroku, and the <a href="https://api.badminton-api.com">Badminton Singles API</a></p>
-      <div style={{"display": "flex", "alignContent":"space-evenly"}}>
-        <TopPlayersContainer event={"MS"} count={10} />
-        <TopPlayersContainer event={"WS"} count={10} />
-      </div>
+      <p style={{ fontSize: "14pt" }}>
+        Built using TypeScript, React, Redux (soon), AWS Lambda (soon), Heroku,
+        and the{" "}
+        <a href="https://api.badminton-api.com">Badminton Singles API</a>
+      </p>
+
       <SearchBarContainer
-          text={text}
-          onTextChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            onTextChange(event)}
-          onSearch={() => onSearch()}
+        text={text}
+        onTextChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onTextChange(event)
+        }
+        onSearch={() => onSearch()}
       />
-      {isLoading && <h1 style={{ fontSize: "50pt" }}>LOADING</h1>}
-      {suggestions && (
-        <SearchResultsContainer suggestions={suggestions} />
+      <Skeleton height={isLoading ? "200px" : "auto"} visible={isLoading}>
+        <SearchResultsContainer
+          noSuggestions={noSuggestions}
+          suggestions={suggestions}
+        />
+      </Skeleton>
+      {!suggestions && (
+        <div
+          style={{
+            display: "flex",
+            margin: "5%",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Paper padding="xl" shadow="l">
+            <TopPlayersContainer event={"MS"} count={10} />
+          </Paper>
+          <Paper padding="xl" shadow="l">
+            <TopPlayersContainer event={"WS"} count={10} />
+          </Paper>
+        </div>
       )}
-      {noSuggestions && <p>No players with '{noSuggestions}' in their name could be found. Please check your spelling and try again.</p>}
       {loadingError && <p>Sorry, there was an error. Please try again.</p>}
     </div>
   );
