@@ -1,8 +1,12 @@
 #top-players-container {
   width: auto;
-  margin: auto;
+  margin: 3%;
   text-align: left;
 }
 #top-players-table {
   text-align: left;
+}
+
+body {
+  background-color: rgb(250, 228, 232);
 }
