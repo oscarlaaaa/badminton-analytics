@@ -20,15 +20,17 @@ const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
   }, []);
 
   return (
-    <div>
+    <>
       <h2>Match History</h2>
-      <MatchHistoryComponent
-        player={player}
-        matches={matches}
-        playerCache={player_cache}
-        tourneyCache={tournament_cache}
-      />
-    </div>
+      <div id="match-history-container">
+        <MatchHistoryComponent
+          player={player}
+          matches={matches}
+          playerCache={player_cache}
+          tourneyCache={tournament_cache}
+        />
+      </div>
+    </>
   );
 };
 
