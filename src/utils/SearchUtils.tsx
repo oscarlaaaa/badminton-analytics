@@ -1,6 +1,6 @@
 import { TopPlayer, Player } from "../types/DataTypes";
 
-const SEARCH_LIMIT = 10;
+const SEARCH_LIMIT = 6;
 
 export const fetchSuggestions = async (text: string): Promise<Player[]> => {
   text.replace(" ", "%20");

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TextInput } from "@mantine/core";
-import SearchBarButton from './SearchBarButton';
+import SearchBarButton from "./SearchBarButton";
 
 interface SearchProps {
   text: string;
@@ -8,21 +8,27 @@ interface SearchProps {
   onSearch: () => void;
 }
 
-
 const SearchBarComponent: React.FC<SearchProps> = (props): JSX.Element => {
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      props.onSearch();
+    }
+  }
+
   return (
-    <div style={{display: "flex", justifyContent: "center"}}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <TextInput
         placeholder="Type to search for a player"
         variant="default"
-        style={{width: "60%"}}
+        style={{ width: "90%" }}
         size="md"
         value={props.text}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           props.onTextChange(e);
         }}
+        onKeyPress={handleKeyPress}
       />
-      <SearchBarButton onSearch={() => props.onSearch()}/>
+      <SearchBarButton onSearch={() => props.onSearch()} />
     </div>
   );
 };

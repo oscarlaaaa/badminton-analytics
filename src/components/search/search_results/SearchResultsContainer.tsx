@@ -1,6 +1,7 @@
 import * as React from "react";
 import SearchResultsComponent from "./SearchResultsComponent";
 import { Player } from "../../../types/DataTypes";
+import { Paper } from '@mantine/core';
 
 interface ResultProps {
   suggestions: Player[];
@@ -12,7 +13,9 @@ const SearchResultsContainer: React.FC<ResultProps> = ({
   noSuggestions,
 }) => {
   return (
-    <div style={{ margin: "auto" }}>
+    <Paper 
+    padding="sm"
+    style={{ height: "auto" }}>
       {suggestions && <SearchResultsComponent suggestions={suggestions} />}
       {!suggestions && noSuggestions && (
         <p>
@@ -20,7 +23,7 @@ const SearchResultsContainer: React.FC<ResultProps> = ({
           check your spelling and try again.
         </p>
       )}
-    </div>
+    </Paper>
   );
 };
 

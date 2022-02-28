@@ -1,26 +1,24 @@
 import * as React from "react";
 import { Player } from "../../../types/DataTypes";
 import SearchResultSuggestion from "./SearchResultSuggestion";
+import { Table } from '@mantine/core';
 
 interface ResultProps {
   suggestions: Player[];
 }
 
 const SearchResultsComponent: React.FC<ResultProps> = ({ suggestions }) => {
+  React.useEffect(() => {
+  }, [suggestions]);
+  
   return (
-    <table style={{"margin":"5% auto 5% auto"}}>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-        </tr>
-      </thead>
+    <Table id="search-results" >
       <tbody>
         {suggestions.map((player: Player) => {
           return <SearchResultSuggestion player={player} />;
         })}
       </tbody>
-    </table>
+    </Table>
   );
 };
 
