@@ -1,0 +1,15 @@
+list with icons for top players
+
+input with left + right sections for search
+
+timeline for head-to-head
+
+progress bar for points won, matches won, games won
+
+skeleton while stuff is loading
+
+paper for sections
+
+app shell for player dashboard area
+
+transition for moving cards and stuff into place?
