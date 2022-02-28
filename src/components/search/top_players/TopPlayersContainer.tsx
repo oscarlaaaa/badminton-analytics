@@ -23,7 +23,7 @@ const TopPlayersContainer: React.FC<TopPlayersContainerProps> = (props) => {
 
   return (
     <div id="top-players-container">
-      <h2>Top {props.event} Players by Win Count</h2>
+      <h2>Top {props.event} Players by Wins</h2>
       {topPlayers ? <TopPlayersComponent players={topPlayers} /> : <p>Error loading top players.</p>}
     </div>
   )
