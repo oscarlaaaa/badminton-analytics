@@ -8,8 +8,6 @@ interface ResultProps {
 }
 
 const SearchResultsComponent: React.FC<ResultProps> = ({ suggestions }) => {
-  React.useEffect(() => {
-  }, [suggestions]);
   
   return (
     <Table id="search-results" >

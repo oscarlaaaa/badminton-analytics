@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TopPlayer } from "../../../types/DataTypes";
-import { List, Text, ThemeIcon, Space } from "@mantine/core";
+import { List, Text, ThemeIcon } from "@mantine/core";
 import { AiTwotoneCrown } from "react-icons/ai";
 import {
   RiNumber2,

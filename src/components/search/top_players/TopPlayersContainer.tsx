@@ -4,8 +4,6 @@ import * as SearchUtils from '../../../utils/SearchUtils';
 import TopPlayersComponent from './TopPlayersComponent';
 import '../../../styles/TopPlayers.css';
 
-import { Paper } from '@mantine/core';
-
 interface TopPlayersContainerProps {
   event: string;
   count: number;

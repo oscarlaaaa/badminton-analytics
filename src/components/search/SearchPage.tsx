@@ -5,7 +5,7 @@ import SearchBarContainer from "./search_bar/SearchBarContainer";
 import SearchResultsContainer from "./search_results/SearchResultsContainer";
 import TopPlayersContainer from "./top_players/TopPlayersContainer";
 
-import { Skeleton, Center, Paper, Grid } from "@mantine/core";
+import { Skeleton, Center, Paper } from "@mantine/core";
 
 const SearchPage: React.FC = (): React.ReactElement => {
   const [text, setText] = React.useState<string>("");
