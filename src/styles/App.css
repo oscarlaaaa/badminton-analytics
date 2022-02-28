@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(255, 236, 239);
+}
+
+#search-results {
+  text-align: left;
+}
+
+#search-results tbody tr:hover {
+  background-color: lightpink;
+  cursor: pointer;
+}
