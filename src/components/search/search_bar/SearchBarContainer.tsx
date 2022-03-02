@@ -8,9 +8,6 @@ interface SearchProps {
 }
 
 const SearchBarContainer: React.FC<SearchProps> = (props): React.ReactElement => {
-  React.useEffect(() => {
-    console.log(props.text);
-  }, [props.text]);
 
   return (
       <SearchBarComponent

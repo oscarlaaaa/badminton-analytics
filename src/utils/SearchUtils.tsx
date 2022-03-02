@@ -18,7 +18,6 @@ export const fetchSuggestions = async (text: string): Promise<Player[]> => {
     )
     .then(
       (result) => {
-        console.log(result);
         return Promise.resolve(result.data);
       },
       (error) => {
@@ -41,7 +40,6 @@ export const fetchPlayer = async (uid: string): Promise<Player> => {
     )
     .then(
       (result) => {
-        console.log(result);
         return Promise.resolve(result.data);
       },
       (error) => {
@@ -69,7 +67,6 @@ export const fetchTopPlayers = async (event: string, limit: number): Promise<Top
     )
     .then(
       (result) => {
-        console.log(result);
         return Promise.resolve(result.data);
       },
       (error) => {

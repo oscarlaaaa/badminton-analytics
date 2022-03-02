@@ -15,7 +15,6 @@ export const fetchMatches = async (uid: string): Promise<Match[]> => {
     )
     .then(
       (result) => {
-        console.log(result);
         return Promise.resolve(result.data);
       },
       (error) => {
@@ -41,7 +40,6 @@ export const fetchSets = async (playerid: string, opponentid: string, tournament
     )
     .then(
       (result) => {
-        console.log(result);
         return Promise.resolve(result.data);
       },
       (error) => {
@@ -66,7 +64,6 @@ export const fetchTournament = async (uid: string): Promise<Tournament> => {
     )
     .then(
       (result) => {
-        console.log(result);
         return Promise.resolve(result.data);
       },
       (error) => {
