@@ -44,7 +44,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
         height: "97vh",
       }}
     >
-      <div
+      {/* <div
         id="search-area"
         style={{ height: "100%", margin: "3%", width: "70%" }}
       >
@@ -78,7 +78,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
             />
           </Skeleton>
         )}
-      </div>
+      </div> */}
       <div style={{ width: "30%" }}>
         <div
           style={{
