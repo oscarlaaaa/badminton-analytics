@@ -17,6 +17,7 @@ const TopPlayersContainer: React.FC<TopPlayersContainerProps> = (props) => {
     .then((players: TopPlayer[]) => {
       setTopPlayers(players);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

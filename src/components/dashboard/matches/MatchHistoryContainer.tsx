@@ -16,6 +16,7 @@ const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
   React.useEffect(() => {
     MatchUtils.fetchMatches(player.id).then((results: Match[]) => {
       setMatches(results);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     });
   }, []);
 
