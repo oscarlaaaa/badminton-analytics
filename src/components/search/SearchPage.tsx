@@ -44,7 +44,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
         height: "97vh",
       }}
     >
-      {/* <div
+      <div
         id="search-area"
         style={{ height: "100%", margin: "3%", width: "70%" }}
       >
@@ -78,8 +78,8 @@ const SearchPage: React.FC = (): React.ReactElement => {
             />
           </Skeleton>
         )}
-      </div> */}
-      <div style={{ width: "30%" }}>
+      </div>
+      {/* <div style={{ width: "30%" }}>
         <div
           style={{
             margin: "5%",
@@ -92,7 +92,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
             <TopPlayersContainer event={"WS"} count={5} />
           </Paper>
         </div>
-      </div>
+      </div> */}
       {loadingError && <p>Sorry, there was an error. Please try again.</p>}
     </Center>
   );
