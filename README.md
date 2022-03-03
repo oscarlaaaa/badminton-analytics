@@ -1,5 +1,5 @@
 # BWF Badminton Analytics Dashboard
-A badminton singles dashboard that allows users to look at individual player stats, see visualized trends and data, and provide an analytic head-to-head % chance of victory against another player using various regressive models. 
+A badminton singles dashboard that allows users to look at individual player stats, see visualized trends and data, and provide an analytic head-to-head % chance of victory against another player using machine learning models implemented by the [Badminton Analytics Lambda](https://github.com/oscarlaaaa/badminton-analytics-predictor) (WIP).
 
 ## Current Features
 You can search for players, and render their personal profile information + some matches of theirs (incomplete). That's pretty much it for now B)
@@ -15,19 +15,14 @@ Visit [here](http://analytics.badminton-api.com) to test out the project!
 - [ ] Build out the basic pages (search, player display, head-to-head comparison)
 - [ ] Incorporate Redux for state management (doesn't solve any immediate issues, but good practice!)
 - [ ] Stylize components
-- [ ] Initialize analytic lambda to person model regression and fitting
-- [ ] Establish linear and logistic regression models
-- [ ] Establish Naive-Bayes and K-nearest-neighbours models
-- [ ] Establish support-vector-machines model
-- [ ] Attach lambda to custom URL
-- [ ] Host lambda on AWS
-- [ ] Host project page on Heroku or AWS with custom URL
+- [ ] Initialize + implement predictive lambda
+- [x] Host project page on Heroku or AWS with custom URL
 
 ## Technologies Used
-* React (TypeScript), Redux
-* Python
-* AWS Lambda
-* Heroku or AWS hosting
+* React (TypeScript)
+* Mantine UI
+* AWS Lambda (Python)
+* Heroku
 
 ## What I've Learned
 To be determined
