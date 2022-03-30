@@ -1,4 +1,4 @@
-import { TopPlayer, Player } from "../types/DataTypes";
+import { TopPlayer, Player, HeadToHeadRecord } from "../types/DataTypes";
 
 const SEARCH_LIMIT = 6;
 
@@ -40,6 +40,7 @@ export const fetchPlayer = async (uid: string): Promise<Player> => {
     )
     .then(
       (result) => {
+        console.log(result.data);
         return Promise.resolve(result.data);
       },
       (error) => {
@@ -75,3 +76,22 @@ export const fetchTopPlayers = async (event: string, limit: number): Promise<Top
       }
     );
 };
+
+const HEAD_TO_HEAD_LIMIT: number = 5;
+export const fetchHeadToHeadRecord = async (playerId: string, wins: boolean, descending: boolean): Promise<HeadToHeadRecord[]> => {
+  return fetch(`https://api.badminton-api.com/player/records?player_id=${playerId}&sort_wins=${wins}&desc=${descending}&limit=${HEAD_TO_HEAD_LIMIT}`)
+    .then(
+      (res) => {
+        return res.json();
+      },
+      (err) => {
+        console.log(err);
+        return Promise.reject(err);
+      }
+    )
+    .then(
+      (result) => {
+        return Promise.resolve(result.data);
+      }
+    );
+}

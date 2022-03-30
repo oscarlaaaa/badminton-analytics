@@ -6,6 +6,7 @@ export interface Player {
   playHand: string | null;
   birthDate: string | null;
   height: number | null;
+  img_link: string | null;
 }
 
 export interface Match {
@@ -36,4 +37,10 @@ export interface TopPlayer {
   winnerId: string;
   name: string;
   wins: number;
+}
+
+export interface HeadToHeadRecord {
+  opponent: string;
+  wins: number;
+  losses: number;
 }

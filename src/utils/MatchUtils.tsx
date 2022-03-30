@@ -2,7 +2,7 @@ import { Match, Set, Tournament } from "../types/DataTypes";
 
 export const fetchMatches = async (uid: string): Promise<Match[]> => {
   return fetch(
-    `https://api.badminton-api.com/match/player?player_id=${uid}&limit=25`
+    `https://api.badminton-api.com/match/player?player_id=${uid}&limit=5`
   )
     .then(
       (res) => {
