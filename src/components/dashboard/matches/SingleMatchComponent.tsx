@@ -11,7 +11,7 @@ interface SingleMatchProps {
 }
 
 const matchPointField = (points: string[]) => {
-  return <td>
+  return <td style={{"width": "fit-content"}}>
     {points.map((point) => {
       return <p style={{"margin":"0", "textAlign":"center"}}>{point}</p>
   })}</td>;
@@ -22,7 +22,7 @@ const SingleMatchComponent: React.FC<SingleMatchProps> = (props) => {
     <td>{props.winnerName === props.player.name ? (<b>{props.winnerName}</b>) : props.winnerName}</td>
     {matchPointField(props.points)}
     <td>{props.loserName === props.player.name ? (<b>{props.loserName}</b>) : props.loserName}</td>
-    <td>{props.tournamentName}</td>
+    <td style={{"width":"fit-content"}}>{props.tournamentName}</td>
     <td>{props.duration}</td>
   </tr>;
 };

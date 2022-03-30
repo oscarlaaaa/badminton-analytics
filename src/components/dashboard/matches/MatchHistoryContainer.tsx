@@ -22,7 +22,7 @@ const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
 
   return (
     <>
-      <h2>Match History</h2>
+      <h2>Recent Match History</h2>
       <div id="match-history-container">
         <MatchHistoryComponent
           player={player}

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Player, Match } from "../../../types/DataTypes";
 import SingleMatchContainer from "./SingleMatchContainer";
+import { Table } from "@mantine/core";
 
 interface MatchHistoryProps {
   player: Player;
@@ -11,11 +12,11 @@ interface MatchHistoryProps {
 
 const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({ player, matches, playerCache, tourneyCache }) => {
   return matches ? (
-    <table id="match-history-table">
+    <Table id="match-history-table">
       <thead>
       <tr>
         <th>Winner</th>
-        <th style={{"width":"100px"}}>Score</th>
+        <th style={{"width":"fit-content", "textAlign": "center"}}>Score</th>
         <th>Loser</th>
         <th>Tournament</th>
         <th>Duration</th>
@@ -24,7 +25,7 @@ const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({ player, matches, p
       {matches.map((match: Match) => {
         return <SingleMatchContainer player={player} match={match} playerCache={playerCache} tourneyCache={tourneyCache} />;
       })}</tbody>
-    </table>
+    </Table>
   ) : (
     <p>No matches found.</p>
   );
