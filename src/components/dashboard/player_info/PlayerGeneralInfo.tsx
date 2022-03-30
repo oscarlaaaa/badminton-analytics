@@ -1,13 +1,16 @@
 import * as React from "react";
 import { Player } from "../../../types/DataTypes";
+import PlayerImage from "./PlayerImage";
 
 interface PlayerSuggestionProps {
   player: Player;
 }
 
 const PlayerGeneralInfo: React.FC<PlayerSuggestionProps> = ({ player }) => {
+  console.log(player)
   return (
     <div>
+      <PlayerImage link={player.img_link} />
       <h1>{player.name}</h1>
       <ul>
         <li>
