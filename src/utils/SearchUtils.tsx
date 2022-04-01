@@ -40,7 +40,6 @@ export const fetchPlayer = async (uid: string): Promise<Player> => {
     )
     .then(
       (result) => {
-        console.log(result.data);
         return Promise.resolve(result.data);
       },
       (error) => {

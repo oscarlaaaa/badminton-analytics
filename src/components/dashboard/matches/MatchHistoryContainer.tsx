@@ -3,6 +3,7 @@ import * as MatchUtils from "../../../utils/MatchUtils";
 import MatchHistoryComponent from "./MatchHistoryComponent";
 import { Player, Match } from "../../../types/DataTypes";
 import "../../../styles/MatchHistory.css";
+import { Container } from "@mantine/core";
 
 interface MatchHistoryProps {
   player: Player;
@@ -21,8 +22,8 @@ const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
   }, []);
 
   return (
-    <>
-      <h2>Recent Match History</h2>
+    <Container>
+      <h3 className="section-header">Recent Matches</h3>
       <div id="match-history-container">
         <MatchHistoryComponent
           player={player}
@@ -31,7 +32,7 @@ const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
           tourneyCache={tournament_cache}
         />
       </div>
-    </>
+    </Container>
   );
 };
 

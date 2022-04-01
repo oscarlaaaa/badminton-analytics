@@ -13,7 +13,7 @@ interface SingleMatchProps {
 const matchPointField = (points: string[]) => {
   return <td style={{"width": "fit-content"}}>
     {points.map((point) => {
-      return <p style={{"margin":"0", "textAlign":"center"}}>{point}</p>
+      return <p id={point} style={{"margin":"0", "textAlign":"center"}}>{point}</p>
   })}</td>;
 };
 

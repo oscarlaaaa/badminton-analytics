@@ -3,9 +3,8 @@ import * as SearchUtils from "../../utils/SearchUtils";
 import { Player } from "../../types/DataTypes";
 import SearchBarContainer from "./search_bar/SearchBarContainer";
 import SearchResultsContainer from "./search_results/SearchResultsContainer";
-import TopPlayersContainer from "./top_players/TopPlayersContainer";
 
-import { Skeleton, Center, Paper } from "@mantine/core";
+import { Skeleton, Center } from "@mantine/core";
 
 const SearchPage: React.FC = (): React.ReactElement => {
   const [text, setText] = React.useState<string>("");
@@ -79,20 +78,6 @@ const SearchPage: React.FC = (): React.ReactElement => {
           </Skeleton>
         )}
       </div>
-      {/* <div style={{ width: "30%" }}>
-        <div
-          style={{
-            margin: "5%",
-          }}
-        >
-          <Paper padding="sm" shadow="l" m="md">
-            <TopPlayersContainer event={"MS"} count={5} />
-          </Paper>
-          <Paper padding="sm" shadow="l" m="md">
-            <TopPlayersContainer event={"WS"} count={5} />
-          </Paper>
-        </div>
-      </div> */}
       {loadingError && <p>Sorry, there was an error. Please try again.</p>}
     </Center>
   );
