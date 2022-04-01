@@ -5,6 +5,7 @@ import PlayerGeneralInfo from "./player_info/PlayerGeneralInfo";
 import { Player } from "../../types/DataTypes";
 import MatchHistoryContainer from "./matches/MatchHistoryContainer";
 import HeadToHeadHistory from "./h2h_match_history/HeadToHeadHistoryContainer";
+import { Grid } from "@mantine/core";
 
 const DashboardPage: React.FC = (): React.ReactElement => {
   const { uid } = useParams<string>();
@@ -20,8 +21,10 @@ const DashboardPage: React.FC = (): React.ReactElement => {
     <div>
       <PlayerGeneralInfo player={player} />
       <MatchHistoryContainer player={player} />
-      <HeadToHeadHistory player={player.id} wins={true} />
-      <HeadToHeadHistory player={player.id} wins={false} />
+      <Grid columns={2}>
+        <HeadToHeadHistory player={player.id} wins={true} />
+        <HeadToHeadHistory player={player.id} wins={false} />
+      </Grid>
     </div>
   ) : (
     <p>Error: ID doesn't correspond with a player. Please try again.</p>

@@ -1,15 +1,29 @@
 import * as React from "react";
-import { fetchHeadToHeadRecord } from "../../../utils/SearchUtils";
+import { fetchHeadToHeadRecord, fetchPlayer } from "../../../utils/SearchUtils";
 import { HeadToHeadRecord } from "../../../types/DataTypes";
 import HeadToHeadHistoryComponent from "./HeadToHeadHistoryComponent";
 
-const HeadToHeadHistoryContainer = ({ player, wins }) => {
-  const [history, setHistory] = React.useState<HeadToHeadRecord[] | null>(null);
+interface HeadToHeadHistoryProps {
+  player: string,
+  wins: boolean
+}
+
+const HeadToHeadHistoryContainer: React.FC<HeadToHeadHistoryProps> = ({ player, wins }) => {
+  const [history, setHistory] = React.useState(null);
 
   React.useEffect(() => {
-    fetchHeadToHeadRecord(player, wins, true).then((result) => {
-      setHistory(result);
-    });
+    const setNames = async (player: string, wins: boolean) => {
+      let h2hrecords = await fetchHeadToHeadRecord(player, wins, true);
+
+      await Promise.all(h2hrecords.map(async (record) => {
+        const grabbedPlayer = await fetchPlayer(record.opponent);
+        record['name'] = grabbedPlayer.name;
+        record['img_link'] = grabbedPlayer.img_link;
+      }));
+      setHistory(h2hrecords);
+    }
+
+    setNames(player, wins);
   }, []);
 
   return (
