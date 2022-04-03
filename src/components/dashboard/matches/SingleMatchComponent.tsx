@@ -11,7 +11,7 @@ interface SingleMatchProps {
 }
 
 const matchPointField = (points: string[]) => {
-  return <td style={{"width": "fit-content"}}>
+  return <td style={{"width": "fit-content", "minWidth": "60px", "fontSize": "9pt"}}>
     {points.map((point) => {
       return <p id={point} style={{"margin":"0", "textAlign":"center"}}>{point}</p>
   })}</td>;
@@ -19,11 +19,11 @@ const matchPointField = (points: string[]) => {
 
 const SingleMatchComponent: React.FC<SingleMatchProps> = (props) => {
   return <tr>
-    <td>{props.winnerName === props.player.name ? (<b>{props.winnerName}</b>) : props.winnerName}</td>
+    <td style={{textAlign: "right"}}>{props.winnerName === props.player.name ? (<b>{props.winnerName}</b>) : props.winnerName}</td>
     {matchPointField(props.points)}
-    <td>{props.loserName === props.player.name ? (<b>{props.loserName}</b>) : props.loserName}</td>
-    <td style={{"width":"fit-content"}}>{props.tournamentName}</td>
-    <td>{props.duration}</td>
+    <td style={{textAlign: "left"}}>{props.loserName === props.player.name ? (<b>{props.loserName}</b>) : props.loserName}</td>
+    <td style={{"width":"fit-content", "fontSize": "9pt", textAlign: "center"}}>{props.tournamentName}</td>
+    <td style={{textAlign: "center"}}>{props.duration}</td>
   </tr>;
 };
 
