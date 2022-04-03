@@ -8,9 +8,10 @@ const HEAD_TO_HEAD_LIMIT = 5;
 interface HeadToHeadHistoryProps {
   player: string,
   wins: boolean
+  done: () => void
 }
 
-const HeadToHeadHistoryContainer: React.FC<HeadToHeadHistoryProps> = ({ player, wins }) => {
+const HeadToHeadHistoryContainer: React.FC<HeadToHeadHistoryProps> = ({ player, wins, done }) => {
   const [history, setHistory] = React.useState(null);
 
   React.useEffect(() => {
@@ -23,6 +24,7 @@ const HeadToHeadHistoryContainer: React.FC<HeadToHeadHistoryProps> = ({ player, 
         record['imgLink'] = grabbedPlayer.imgLink;
       }));
       setHistory(h2hrecords);
+      done();
     }
 
     setNames(player, wins);

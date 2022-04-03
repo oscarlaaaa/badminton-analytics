@@ -6,10 +6,12 @@ const HEAD_TO_HEAD_LIMIT = 5000;
 
 interface HeadToHeadHistoryProps {
   player: string;
+  done: () => void;
 }
 
 const AllHeadToHeadContainer: React.FC<HeadToHeadHistoryProps> = ({
   player,
+  done,
 }) => {
   const [h2h, setH2h] = React.useState(null);
 
@@ -47,6 +49,7 @@ const AllHeadToHeadContainer: React.FC<HeadToHeadHistoryProps> = ({
       });
       console.log(h2hArrayOutput);
       setH2h(h2hArrayOutput);
+      done();
     };
 
     setWinsAndLossesCount(player);

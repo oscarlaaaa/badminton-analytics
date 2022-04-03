@@ -1,4 +1,4 @@
-import { createStyles, Container, Chips, Chip } from "@mantine/core";
+import { createStyles, Container, Chips, Chip, Skeleton } from "@mantine/core";
 import * as React from "react";
 import AllHeadToHeadContainer from "./AllHeadToHeadContainer";
 import HeadToHeadHistoryContainer from "./HeadToHeadHistoryContainer";
@@ -26,8 +26,13 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
 const GeneralHeadToHeadComponent: React.FC<GeneralH2HProps> = ({ player }) => {
   const [display, setDisplay] = React.useState<string>("wins");
+  const [loading, setLoading] = React.useState<boolean>(false);
   const largeScreen = useMediaQuery("(min-width: 1280px)");
   const { classes } = useStyles();
+
+  function doneLoading() {
+    setLoading(false);
+  }
 
   React.useEffect(() => {}, [display]);
 
@@ -45,23 +50,47 @@ const GeneralHeadToHeadComponent: React.FC<GeneralH2HProps> = ({ player }) => {
         onChange={setDisplay}
         multiple={false}
       >
-        <Chip style={{ margin: "7px auto" }} value="wins">
+        <Chip
+          style={{ margin: "7px auto" }}
+          onClick={() => setLoading(true)}
+          value="wins"
+        >
           Wins
         </Chip>
-        <Chip style={{ margin: "7px auto" }} value="losses">
+        <Chip
+          style={{ margin: "7px auto" }}
+          onClick={() => setLoading(true)}
+          value="losses"
+        >
           Losses
         </Chip>
-        <Chip style={{ margin: "7px auto" }} value="distribution">
+        <Chip
+          style={{ margin: "7px auto" }}
+          onClick={() => setLoading(true)}
+          value="distribution"
+        >
           Distribution
         </Chip>
       </Chips>
-      {display === "wins" && (
-        <HeadToHeadHistoryContainer player={player} wins={true} />
-      )}
-      {display === "losses" && (
-        <HeadToHeadHistoryContainer player={player} wins={false} />
-      )}
-      {display === "distribution" && <AllHeadToHeadContainer player={player} />}
+      <Skeleton visible={loading} height={275} width={"100%"}>
+        {display === "wins" && (
+          <HeadToHeadHistoryContainer
+            player={player}
+            wins={true}
+            done={() => doneLoading()}
+          />
+        )}
+        {display === "losses" && (
+          <HeadToHeadHistoryContainer
+            player={player}
+            wins={false}
+            done={() => doneLoading()}
+          />
+        )}
+        {display === "distribution" && (
+          <AllHeadToHeadContainer player={player} done={() => doneLoading()} />
+        )}
+      </Skeleton>
     </Container>
   );
 };
