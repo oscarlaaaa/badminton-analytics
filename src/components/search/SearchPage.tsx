@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as SearchUtils from "../../utils/SearchUtils";
+import * as PlayerUtils from "../../utils/PlayerUtils";
 import { Player } from "../../types/DataTypes";
 import SearchBarContainer from "./search_bar/SearchBarContainer";
 import SearchResultsContainer from "./search_results/SearchResultsContainer";
@@ -21,7 +21,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
   const onSearch = (): void => {
     setIsLoading(true);
     setFirstClick(true);
-    SearchUtils.fetchSuggestions(text).then(
+    PlayerUtils.fetchSuggestions(text).then(
       (suggest) => {
         setSuggestions(suggest ?? null);
         setNoSuggestions(suggest === undefined ? text : null);
@@ -40,7 +40,9 @@ const SearchPage: React.FC = (): React.ReactElement => {
       style={{
         textAlign: "center",
         width: "97vw",
-        height: "97vh",
+        height: "100%",
+        backgroundColor: "white",
+        borderRadius: "10px"
       }}
     >
       <div
@@ -52,7 +54,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
             marginTop: "6%",
             marginBottom: "0",
             textAlign: "left",
-            fontSize: "58pt",
+            fontSize: "48pt",
           }}
         >
           Badminton <br />

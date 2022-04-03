@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+body {
+  font-family: 'Mulish', sans-serif;
+  background-color: rgb(255, 193, 193);
+}
+
 #search-results {
   text-align: left;
 }
@@ -7,7 +14,22 @@
   cursor: pointer;
 }
 
-.mantine-Table-root {
-  width: 90%;
+.mantine-Container-root {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+.section-header {
   margin: auto;
+  text-align: center;
+}
+
+#match-history-table {
+  margin: auto;
+}
+
+#match-history-table td, th {
+  width: fit-content;
+  padding: 2px 2px;
 }

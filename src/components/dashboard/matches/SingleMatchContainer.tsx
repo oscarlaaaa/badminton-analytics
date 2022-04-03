@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Player, Match, Set, Tournament } from "../../../types/DataTypes";
 import * as MatchUtils from "../../../utils/MatchUtils";
-import * as SearchUtils from "../../../utils/SearchUtils";
+import * as PlayerUtils from "../../../utils/PlayerUtils";
 import SingleMatchComponent from "./SingleMatchComponent";
 
 interface SingleMatchContainerProps {
@@ -45,7 +45,7 @@ const SingleMatchContainer: React.FC<SingleMatchContainerProps> = ({
       if (sets[0].winnerId in playerCache) {
         setWinnerName(playerCache[sets[0].winnerId].name);
       } else {
-        SearchUtils.fetchPlayer(sets[0].winnerId).then((player: Player) => {
+        PlayerUtils.fetchPlayer(sets[0].winnerId).then((player: Player) => {
           playerCache[sets[0].winnerId] = player;
           setWinnerName(player.name);
         });
@@ -55,7 +55,7 @@ const SingleMatchContainer: React.FC<SingleMatchContainerProps> = ({
       if (sets[0].loserId in playerCache) {
         setLoserName(playerCache[sets[0].loserId].name);
       } else {
-        SearchUtils.fetchPlayer(sets[0].loserId).then((player: Player) => {
+        PlayerUtils.fetchPlayer(sets[0].loserId).then((player: Player) => {
           playerCache[sets[0].loserId] = player;
           setLoserName(player.name);
         });

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { TopPlayer } from '../../../types/DataTypes';
-import * as SearchUtils from '../../../utils/SearchUtils';
+import * as PlayerUtils from '../../../utils/PlayerUtils';
 import TopPlayersComponent from './TopPlayersComponent';
 import '../../../styles/TopPlayers.css';
 
@@ -13,7 +13,7 @@ const TopPlayersContainer: React.FC<TopPlayersContainerProps> = (props) => {
   const [topPlayers, setTopPlayers] = React.useState<TopPlayer[]>(null);
 
   React.useEffect(() => {
-    SearchUtils.fetchTopPlayers(props.event, props.count)
+    PlayerUtils.fetchTopPlayers(props.event, props.count)
     .then((players: TopPlayer[]) => {
       setTopPlayers(players);
     });

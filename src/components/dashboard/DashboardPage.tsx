@@ -1,10 +1,11 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
-import * as SearchUtils from "../../utils/SearchUtils";
+import * as PlayerUtils from "../../utils/PlayerUtils";
 import PlayerGeneralInfo from "./player_info/PlayerGeneralInfo";
 import { Player } from "../../types/DataTypes";
 import MatchHistoryContainer from "./matches/MatchHistoryContainer";
-import HeadToHeadHistory from "./h2h_match_history/HeadToHeadHistoryContainer";
+import GeneralHeadToHeadComponent from "./h2h_match_history/GeneralHeadToHeadComponent";
+import CoolStatsContainer from "./cool_stats/CoolStatsContainer";
 import { Grid } from "@mantine/core";
 
 const DashboardPage: React.FC = (): React.ReactElement => {
@@ -12,7 +13,7 @@ const DashboardPage: React.FC = (): React.ReactElement => {
   const [player, setPlayer] = React.useState<Player | null>(null);
 
   React.useEffect(() => {
-    SearchUtils.fetchPlayer(uid).then((result: Player) => {
+    PlayerUtils.fetchPlayer(uid).then((result: Player) => {
       setPlayer(result);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -20,10 +21,10 @@ const DashboardPage: React.FC = (): React.ReactElement => {
   return player ? (
     <div>
       <PlayerGeneralInfo player={player} />
-      <MatchHistoryContainer player={player} />
-      <Grid columns={2}>
-        <HeadToHeadHistory player={player.id} wins={true} />
-        <HeadToHeadHistory player={player.id} wins={false} />
+      <Grid grow columns={2} style={{maxWidth: "1200px", margin: "auto"}}>
+        <CoolStatsContainer player={player.id} />
+        <GeneralHeadToHeadComponent player={player.id} />
+        <MatchHistoryContainer player={player} />
       </Grid>
     </div>
   ) : (

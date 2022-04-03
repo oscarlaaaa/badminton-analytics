@@ -76,9 +76,8 @@ export const fetchTopPlayers = async (event: string, limit: number): Promise<Top
     );
 };
 
-const HEAD_TO_HEAD_LIMIT: number = 5;
-export const fetchHeadToHeadRecord = async (playerId: string, wins: boolean, descending: boolean): Promise<HeadToHeadRecord[]> => {
-  return fetch(`https://api.badminton-api.com/player/records?player_id=${playerId}&sort_wins=${wins}&desc=${descending}&limit=${HEAD_TO_HEAD_LIMIT}`)
+export const fetchHeadToHeadRecord = async (playerId: string, wins: boolean, descending: boolean, limit: number): Promise<HeadToHeadRecord[]> => {
+  return fetch(`https://api.badminton-api.com/player/records?player_id=${playerId}&sort_wins=${wins}&desc=${descending}&limit=${limit}`)
     .then(
       (res) => {
         return res.json();

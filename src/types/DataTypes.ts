@@ -6,7 +6,7 @@ export interface Player {
   playHand: string | null;
   birthDate: string | null;
   height: number | null;
-  img_link: string | null;
+  imgLink: string | null;
 }
 
 export interface Match {
