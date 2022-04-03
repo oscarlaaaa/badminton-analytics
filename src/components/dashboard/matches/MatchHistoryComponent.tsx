@@ -2,6 +2,7 @@ import * as React from "react";
 import { Player, Match } from "../../../types/DataTypes";
 import SingleMatchContainer from "./SingleMatchContainer";
 import { Table } from "@mantine/core";
+import { Container } from "@mantine/core";
 
 interface MatchHistoryProps {
   player: Player;
@@ -10,24 +11,43 @@ interface MatchHistoryProps {
   tourneyCache: object;
 }
 
-const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({ player, matches, playerCache, tourneyCache }) => {
-  return matches ? (
-    <Table id="match-history-table">
-      <thead>
-      <tr>
-        <th>Winner</th>
-        <th style={{"width":"fit-content", "textAlign": "center"}}>Score</th>
-        <th>Loser</th>
-        <th>Tournament</th>
-        <th>Duration</th>
-      </tr></thead>
-      <tbody>
-      {matches.map((match: Match) => {
-        return <SingleMatchContainer player={player} match={match} playerCache={playerCache} tourneyCache={tourneyCache} />;
-      })}</tbody>
-    </Table>
-  ) : (
-    <p>No matches found.</p>
+const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({
+  player,
+  matches,
+  playerCache,
+  tourneyCache,
+}) => {
+  return (
+    <Container fluid style={{width: "100%", margin: "10px"}}>
+      <h3 className="section-header">Recent Matches</h3>
+      <div id="match-history-container">
+        <Table id="match-history-table">
+          <thead>
+            <tr>
+              <th style={{textAlign: "right"}}>Winner</th>
+              <th style={{ width: "fit-content", textAlign: "center" }}>
+                Score
+              </th>
+              <th>Loser</th>
+              <th style={{textAlign: "center"}}>Tournament</th>
+              <th style={{textAlign: "center"}}>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {matches.map((match: Match) => {
+              return (
+                <SingleMatchContainer
+                  player={player}
+                  match={match}
+                  playerCache={playerCache}
+                  tourneyCache={tourneyCache}
+                />
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
+    </Container>
   );
 };
 
