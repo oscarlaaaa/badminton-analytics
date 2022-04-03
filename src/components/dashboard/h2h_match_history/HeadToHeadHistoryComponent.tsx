@@ -9,11 +9,13 @@ import {
   Tooltip,
   Legend,
   Bar,
+  Label,
+  ResponsiveContainer,
 } from "recharts";
 
 interface HeadToHeadRecordAdjusted extends HeadToHeadRecord {
-  name: string,
-  img_link: string
+  name: string;
+  img_link: string;
 }
 
 interface HeadToHeadHistoryComponentProps {
@@ -33,9 +35,9 @@ const CustomizedAxisTick: React.FunctionComponent<any> = (props: any) => {
         dy={16}
         textAnchor="end"
         fill="#666"
-        transform="rotate(-25)"
+        transform="rotate(-37)"
         fontSize={"10pt"}
-        style={{wordWrap: "break-word"}}
+        style={{ wordWrap: "break-word" }}
       >
         {payload.value}
       </text>
@@ -48,20 +50,29 @@ const HeadToHeadHistoryComponent: React.FC<HeadToHeadHistoryComponentProps> = ({
   wins,
 }) => {
   return (
-    <Container>
+    <>
       <h3 className="section-header">
         {wins ? "Best" : "Worst"} Player Match Ups
       </h3>
-        <BarChart width={400} height={350} data={history}>
+      <ResponsiveContainer width="100%" height={225}>
+        <BarChart data={history}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" minTickGap={-5} interval={0} height={100} tick={<CustomizedAxisTick />} />
-          <YAxis />
+          <XAxis
+            dataKey="name"
+            interval={0}
+            height={100}
+            tick={<CustomizedAxisTick />}
+          />
+          <YAxis>
+            <Label value="Games" offset={0} angle={-90} position="center" />
+          </YAxis>
           <Tooltip />
           <Legend />
-          <Bar dataKey="wins" fill="#74e3fc" />
-          <Bar dataKey="losses" fill="#fc8d74" />
+          <Bar dataKey="wins" name="Wins" fill="#74e3fc" />
+          <Bar dataKey="losses" name="Losses" fill="#fc8d74" />
         </BarChart>
-    </Container>
+      </ResponsiveContainer>
+    </>
   );
 };
 
