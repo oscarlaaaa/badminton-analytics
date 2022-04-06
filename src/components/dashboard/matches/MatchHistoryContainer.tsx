@@ -6,27 +6,16 @@ import "../../../styles/MatchHistory.css";
 
 interface MatchHistoryProps {
   player: Player;
+  matches: Match[];
 }
 
-const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player }) => {
-  const [matches, setMatches] = React.useState<Match[] | null>(null);
-  let player_cache = {};
-  let tournament_cache = {};
-
-  React.useEffect(() => {
-    MatchUtils.fetchMatches(player.id).then((results: Match[]) => {
-      setMatches(results);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    });
-  }, []);
+const MatchHistoryContainer: React.FC<MatchHistoryProps> = ({ player, matches }) => {
 
   return (
     matches && (
       <MatchHistoryComponent
         player={player}
         matches={matches}
-        playerCache={player_cache}
-        tourneyCache={tournament_cache}
       />
     )
   );

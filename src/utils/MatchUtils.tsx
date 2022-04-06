@@ -24,6 +24,30 @@ export const fetchMatches = async (uid: string): Promise<Match[]> => {
     );
 };
 
+export const fetchAllMatches = async (uid: string): Promise<Match[]> => {
+  return fetch(
+    `https://api.badminton-api.com/match/player?player_id=${uid}&sort_desc=False`
+  )
+    .then(
+      (res) => {
+        return res.json();
+      },
+      (err) => {
+        console.log(err);
+        return Promise.reject(err);
+      }
+    )
+    .then(
+      (result) => {
+        return Promise.resolve(result.data);
+      },
+      (error) => {
+        console.log(error);
+        return Promise.reject(error);
+      }
+    );
+};
+
 export const fetchSets = async (playerid: string, opponentid: string, tournamentid: string): Promise<Set[]> => {
   return fetch(
     `https://api.badminton-api.com/match?player_id=${playerid}&` 
