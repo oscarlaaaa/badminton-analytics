@@ -10,10 +10,14 @@ export interface Player {
 }
 
 export interface Match {
+  startDate: string | null;
   winnerId: string;
   loserId: string;
   tournamentId: string;
   duration: number | null;
+  winnerPoints: number | null;
+  loserPoints: number | null;
+  setCount: number | null;
 }
 
 export interface Set {
