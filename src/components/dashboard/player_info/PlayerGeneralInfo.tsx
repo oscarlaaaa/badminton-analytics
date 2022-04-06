@@ -8,9 +8,9 @@ interface PlayerSuggestionProps {
 
 const PlayerGeneralInfo: React.FC<PlayerSuggestionProps> = ({ player }) => {
   return (
-    <Container fluid style={{ maxWidth: "1160px" }}>
+    <Container fluid style={{ maxWidth: "1200px",width: "100%", margin: "5px auto" }}>
       <Center>
-        <h1 style={{ fontSize: "36pt" }}>{player.name}</h1>
+        <h1 style={{ fontSize: "32pt" }}>{player.name}</h1>
         <div>
           <ul>
             <li>

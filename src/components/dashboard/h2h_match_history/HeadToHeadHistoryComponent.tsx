@@ -54,7 +54,7 @@ const HeadToHeadHistoryComponent: React.FC<HeadToHeadHistoryComponentProps> = ({
       <h3 className="section-header">
         {wins ? "Best" : "Worst"} Player Match Ups
       </h3>
-      <ResponsiveContainer width="100%" height={225}>
+      <ResponsiveContainer width="98%" height={225}>
         <BarChart data={history}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis

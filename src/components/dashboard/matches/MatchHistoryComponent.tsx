@@ -1,24 +1,22 @@
-import * as React from "react";
+ import * as React from "react";
 import { Player, Match } from "../../../types/DataTypes";
 import SingleMatchContainer from "./SingleMatchContainer";
 import { Table } from "@mantine/core";
 import { Container } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface MatchHistoryProps {
   player: Player;
   matches: Match[];
-  playerCache: object;
-  tourneyCache: object;
 }
 
 const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({
   player,
   matches,
-  playerCache,
-  tourneyCache,
 }) => {
+  const largeScreen = useMediaQuery("(min-width: 400px)");
   return (
-    <Container fluid style={{width: "100%", margin: "10px"}}>
+    <Container fluid style={{width: "100%", margin: "5px auto", overflowX: largeScreen ? "initial" : "scroll"}}>
       <h3 className="section-header">Recent Matches</h3>
       <div id="match-history-container">
         <Table id="match-history-table">
@@ -29,7 +27,7 @@ const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({
                 Score
               </th>
               <th>Loser</th>
-              <th style={{textAlign: "center"}}>Tournament</th>
+              <th style={{textAlign: "center"}}>{largeScreen ? "Tournament" : "Tourn."}</th>
               <th style={{textAlign: "center"}}>Time</th>
             </tr>
           </thead>
@@ -39,8 +37,6 @@ const MatchHistoryComponent: React.FC<MatchHistoryProps> = ({
                 <SingleMatchContainer
                   player={player}
                   match={match}
-                  playerCache={playerCache}
-                  tourneyCache={tourneyCache}
                 />
               );
             })}

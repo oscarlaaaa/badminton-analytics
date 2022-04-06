@@ -7,15 +7,11 @@ import SingleMatchComponent from "./SingleMatchComponent";
 interface SingleMatchContainerProps {
   player: Player;
   match: Match;
-  playerCache: object;
-  tourneyCache: object;
 }
 
 const SingleMatchContainer: React.FC<SingleMatchContainerProps> = ({
   player,
   match,
-  playerCache,
-  tourneyCache,
 }) => {
   const [tournamentName, setTournamentName] = React.useState<string>("Loading");
   const [winnerName, setWinnerName] = React.useState<string>("Loading");
@@ -42,36 +38,21 @@ const SingleMatchContainer: React.FC<SingleMatchContainerProps> = ({
       setPoints(MatchUtils.composeScores(sets));
 
       // Get winner name if not in cache
-      if (sets[0].winnerId in playerCache) {
-        setWinnerName(playerCache[sets[0].winnerId].name);
-      } else {
-        PlayerUtils.fetchPlayer(sets[0].winnerId).then((player: Player) => {
-          playerCache[sets[0].winnerId] = player;
-          setWinnerName(player.name);
-        });
-      }
+      PlayerUtils.fetchPlayer(sets[0].winnerId).then((player: Player) => {
+        setWinnerName(player.name);
+      });
 
       // Get loser name if not in cache
-      if (sets[0].loserId in playerCache) {
-        setLoserName(playerCache[sets[0].loserId].name);
-      } else {
-        PlayerUtils.fetchPlayer(sets[0].loserId).then((player: Player) => {
-          playerCache[sets[0].loserId] = player;
-          setLoserName(player.name);
-        });
-      }
+      PlayerUtils.fetchPlayer(sets[0].loserId).then((player: Player) => {
+        setLoserName(player.name);
+      });
 
       // Get tournament name if not in cache
-      if (sets[0].tournamentId in tourneyCache) {
-        setTournamentName(tourneyCache[sets[0].tournamentId].name);
-      } else {
-        MatchUtils.fetchTournament(sets[0].tournamentId).then(
-          (tournament: Tournament) => {
-            tourneyCache[sets[0].tournamentId] = tournament;
-            setTournamentName(tournament.name);
-          }
-        );
-      }
+      MatchUtils.fetchTournament(sets[0].tournamentId).then(
+        (tournament: Tournament) => {
+          setTournamentName(tournament.name);
+        }
+      );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

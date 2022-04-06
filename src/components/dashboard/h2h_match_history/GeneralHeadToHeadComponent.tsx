@@ -39,7 +39,7 @@ const GeneralHeadToHeadComponent: React.FC<GeneralH2HProps> = ({ player }) => {
   return (
     <Container
       fluid
-      style={{ width: largeScreen ? "46%" : "96%", margin: "10px" }}
+      style={{ width: largeScreen ? "47%" : "98%", margin: largeScreen ? "5px 0 5px auto" : "5px auto" }}
     >
       <Chips
         color="red"

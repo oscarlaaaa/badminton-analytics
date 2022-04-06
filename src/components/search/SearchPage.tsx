@@ -41,6 +41,8 @@ const SearchPage: React.FC = (): React.ReactElement => {
         textAlign: "center",
         width: "97vw",
         height: "100%",
+        minHeight: "97vh",
+        margin: "auto",
         backgroundColor: "white",
         borderRadius: "10px"
       }}
@@ -51,7 +53,6 @@ const SearchPage: React.FC = (): React.ReactElement => {
       >
         <h1
           style={{
-            marginTop: "6%",
             marginBottom: "0",
             textAlign: "left",
             fontSize: "48pt",
