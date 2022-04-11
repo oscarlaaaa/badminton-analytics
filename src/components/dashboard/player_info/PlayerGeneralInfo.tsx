@@ -12,7 +12,7 @@ const PlayerGeneralInfo: React.FC<PlayerSuggestionProps> = ({ player }) => {
       <Center>
         <h1 style={{ fontSize: "32pt" }}>{player.name}</h1>
         <div>
-          <ul>
+          <ul style={{listStyleType: "none"}}>
             <li>
               <b>ID:</b> {player.id ?? "N/A"}
             </li>

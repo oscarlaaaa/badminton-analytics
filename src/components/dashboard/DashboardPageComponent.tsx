@@ -14,7 +14,7 @@ interface DashboardPageProps {
 
 const DashboardPageComponent: React.FC<DashboardPageProps> = ({ player, matches, setVisible }): React.ReactElement => {
   React.useEffect(() => {
-    setTimeout(() => setVisible(), 1500);
+    setTimeout(setVisible, 1500);
   }, [])
 
   return (
